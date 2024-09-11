@@ -1,0 +1,29 @@
+﻿@page
+@model dellrecptModel
+@{
+    ViewData["Title"] = "dellrecpt";
+}
+
+<main class="main-container">
+    <div class="clamp">
+        <div class="clamp-inner">
+        </div>
+    </div>
+    <div class="sheet">
+        <p class="top-name">DEL RECPT</p>
+        <hr class="underline">
+        <div class="add_form">
+        <p>Название рецепта</p>
+        <input></input>
+            <button>Поиск</button>
+            <p>Название рецептаь</p>
+        <input></input>
+         <button>Удалить</button>
+        </div>
+        <hr class="underline">
+    </div>
+    <div class="button-container">
+        <button><a asp-area="" asp-page="/Warehouse">warehousepage</a></button>
+        <button><a asp-area="" asp-page="/Index">Рецепты</a></button>
+    </div>
+</main>

@@ -1,0 +1,51 @@
+﻿@page "/addrecipe"
+@using Chef_Helper_Web.Services
+@inject IRecipesService recipeService
+
+@{
+    ViewData["Title"] = "addrecpt";
+}
+
+<main class="main-container">
+    <div class="clamp">
+        <div class="clamp-inner">
+        </div>
+    </div>
+    <div class="sheet">
+        <p class="top-name">ADD RECPT</p>
+        <hr class="underline">
+        <form method="post" asp-page-handler="post">
+            <div class="add_form">
+                <input type="text" id="recipeName" class="text" placeholder="Введите название" name="RecipeName" />
+                <input type="text" id="calories" class="text" placeholder="Введите калорийность" name="CalorieValue" />
+                <input type="text" id="ingredients" class="text" placeholder="Введите ингредиенты" name="IngredientsNeeded" />
+                <input type="text" id="portionWeight" class="text" placeholder="Введите вес одной порции" name="DishWeight" />
+                <button type="submit" class="editor">Добавить</button>
+            </div>
+        </form>
+        <hr class="underline">
+    </div>
+    <div class="button-container">
+        <button><a asp-area="" asp-page="/warehousepage">Склад</a></button>
+        <button><a asp-area="" asp-page="/Index">Рецепты</a></button>
+    </div>
+</main>
+
+@{
+    if (Request.Method == "POST")
+    {
+        string recipeName = Request.Form["RecipeName"];
+        string calories = Request.Form["CalorieValue"];
+        string ingredients = Request.Form["IngredientsNeeded"];
+        string portionWeight = Request.Form["DishWeight"];
+
+        Recipes newRecipe = new Recipes();
+        {
+            newRecipe.RecipeName = recipeName;
+            newRecipe.CalorieValue = calories;
+            newRecipe.IngredientsNeeded = ingredients;
+            newRecipe.DishWeight = portionWeight;
+        }
+        recipeService.Post(newRecipe);
+    }
+}

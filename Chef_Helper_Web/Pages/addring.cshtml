@@ -1,0 +1,42 @@
+﻿@page
+@using Chef_Helper_Web.Services
+@using Chef_Helper_API.Models
+@inject IWarehouseService warehouseService
+@{
+    ViewData["Title"] = "addingModel";
+}
+
+<main class="main-container1">
+    <div class="clamp">
+        <div class="clamp-inner">
+        </div>
+    </div>
+    <div class="sheet">
+        <p class="top-name">ADD INGREDIENT</p>
+        <hr class="underline">
+        <form method="post">
+            <div class="add_form">
+                <p>Название ингредиента</p>
+                <input id="ingredientName" type="text" name="ingredientName" />
+                <p>Количество</p>
+                <input id="ingredientQuantity" type="text" name="ingredientQuantity" />
+                <button type="submit">Добавить</button>
+            </div>
+        </form>
+        <hr class="underline">
+    </div>
+    <div class="button-container">
+        <button><a asp-area="" asp-page="/warehousepage">Склад</a></button>
+        <button><a asp-area="" asp-page="/Index">Рецепты</a></button>
+    </div>
+</main>
+@{
+    if (Request.Method == "POST")
+    {
+        string ingredientName = Request.Form["ingredientName"];
+        string ingredientQuantity = Request.Form["ingredientQuantity"];
+        int quantity = Convert.ToInt32(ingredientQuantity);
+        warehouseService.Post(ingredientName, quantity);
+
+    }
+}

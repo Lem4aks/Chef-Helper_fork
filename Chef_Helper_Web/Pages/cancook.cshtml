@@ -1,0 +1,39 @@
+﻿@page
+@using Chef_Helper_Web.Services
+@using Chef_Helper_API
+@inject IRecipesService recipeService
+@{
+    var recipes = await recipeService.GetRecipesAvailable();
+    ViewData["Title"] = "AvailableDishesModel";
+}
+
+<main class="main-container">
+    <div class="clamp">
+        <div class="clamp-inner">
+        </div>
+    </div>
+    <div class="sheet">
+        <p class="top-name">AvailableDishesModel</p>
+        <hr class="underline">
+        <p class="underline-name ">Food and more</p>
+        <table class="borderless-table">
+            <tr>
+                <th>Блюдо</th>
+                <th>Возможные порции</th>
+            </tr>
+            @foreach (var recipe in recipes)
+            {
+                <tr>
+                    <td>@recipe.RecipeName</td>
+                    <td>@recipe.AvailableQuantity</td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+    <div class="button-container">
+        <a asp-area="" asp-page="/Warehouse"><button>Склад</button></a>
+        <a asp-area="" asp-page="/Index"><button>Рецепты</button></a>
+    </div>
+</main>

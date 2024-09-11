@@ -1,0 +1,47 @@
+﻿@page
+@using Chef_Helper_Web.Services
+@inject IRecipesService recipeService;
+@{
+    var recipes = await recipeService.GetRecipes();
+    ViewData["Title"] = "Home page";
+}
+
+<main class="main-container">
+    <div class="clamp">
+        <div class="clamp-inner">
+        </div>
+    </div>
+    <div class="sheet">
+        <div class="left-circle"></div>
+        <div class="right-circle"></div>
+        <p class="top-name">MENU</p>
+        <hr class="underline">
+        <p class="underline-name ">Food and more</p>
+        <table class="borderless-table">
+            <tr>
+                <th>Название</th>
+                <th>Калорийность</th>
+                <th>Продукты</th>
+                <th>вес одной порции</th>
+            </tr>
+            @foreach (var recipe in recipes)
+            {
+                <tr>
+                    <th>@recipe.RecipeName</th>
+                    <th>@recipe.CalorieValue</th>
+                    <th>@recipe.IngredientsNeeded</th>
+                    <th>@recipe.DishWeight</th>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <div class="button-container">
+        <button><a asp-area="" asp-page="/addrecpt">Добавить</a></button>
+        <button><a asp-area="" asp-page="/dellrecpt">Удалить</a></button>
+        <button><a asp-area="" asp-page="/Editor">Редактировать</a></button>
+        <button><a asp-area="" asp-page="/cancook">Подсчёт</a></button>
+        <button><a asp-area="" asp-page="/warehousepage">Склад</a></button>
+    </div>
+</main>
+

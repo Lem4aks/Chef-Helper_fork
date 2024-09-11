@@ -1,0 +1,46 @@
+﻿@page
+@using Chef_Helper_Web.Services
+@inject IWarehouseService warehouseService;
+@{
+    var warehouses = await warehouseService.GetWarehouses();
+    ViewData["Title"] = "Warehouse";
+}
+
+<main class="main-container1">
+    <div class="clamp">
+        <div class="clamp-inner">
+        </div>
+    </div>
+    <div class="sheet">
+        <p class="top-name">Warehouse</p>
+        <hr class="underline">
+        <p class="underline-name ">Food and more</p>
+        <table class="borderless-table">
+            <tr>
+                <th>Название</th>
+                <th>Калорийность</th>
+                <th>Продукты</th>
+            </tr>
+            @foreach (var warehouse in warehouses)
+            {
+                <tr>
+                    <th>@warehouse.BoxNumber</th>
+                    <th>@warehouse.IngredientName</th>
+                    <th>@warehouse.WarehouseQuantity</th>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+    <div class="button-container">
+        <button><a asp-area="" asp-page="/addring">Добавить</a></button>
+        <button><a asp-area="" asp-page="/dellint">Удалить</a></button>
+        <button>Редакт</button>
+        <button>Подсчёт</button>
+        <button><a asp-area="" asp-page="/Index">Рецепты</a></button>
+    </div>
+</main>
+@{
+    
+}

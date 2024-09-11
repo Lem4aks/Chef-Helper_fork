@@ -1,0 +1,29 @@
+﻿@page
+@model dellingModel
+@{
+    ViewData["Title"] = "dellint";
+}
+
+<main class="main-container1">
+    <div class="clamp">
+        <div class="clamp-inner">
+        </div>
+    </div>
+    <div class="sheet">
+        <p class="top-name">DEL INGREDIENT</p>
+        <hr class="underline">
+        <div class="add_form">
+            <p>Название ингредиента</p>
+        <input></input>
+            <button>Поиск</button>
+            <p>Название ингредиента</p>
+        <input></input>
+         <button>Удалить</button>
+        </div>
+        <hr class="underline">
+    </div>
+    <div class="button-container">
+        <button><a asp-area="" asp-page="/warehousepage">Склад</a></button>
+        <button><a asp-area="" asp-page="/Index">Рецепты</a></button>
+    </div>
+</main>
